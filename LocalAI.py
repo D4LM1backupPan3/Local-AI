@@ -27,25 +27,26 @@ while True :
         print(BotNameColon + random.choice(goodbyes))
         break
     
+    #Dictionary module
+    
     if userinp == "dictionary":
-        print(BotNameColon + "Dictionary mode activated, type the word you want to find in english dictionary")
-        print(BotNameColon + "Printing whole dictionary")
-        print(dictionaryResponseData)
-        #while True:
-            #if userinp in responseData:
-                #print(BotNameColon + dictionaryResponseData[userinp])
+        Word = input("Put Word here (Undercase only for now):")
+        print(BotNameColon + dictionaryResponseData[Word])
+        continue
 
+    if userinp == "dictionary.dump":
+        print(dictionaryResponseData)
+        continue
+
+    #Dictionary module extension ends
 
     if userinp in responseData :
         print(BotNameColon + responseData[userinp])
         continue
     
-    if not userinp in BotNameColon :
+
+    if not userinp in responseData:
         response = input(BotNameColon + "I've never seen this command, how should I respond? ")
-
-    responseData[userinp] = response
-    
-    f = open("response.json", "w")
-    json.dump(responseData, f)
-
-
+        responseData[userinp] = response
+        f = open("response.json", "w")
+        json.dump(responseData, f)
