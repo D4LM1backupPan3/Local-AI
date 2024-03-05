@@ -31,8 +31,11 @@ while True :
     
     if userinp == "dictionary":
         Word = input("Put Word here (Undercase only for now):")
-        print(BotNameColon + dictionaryResponseData[Word])
-        continue
+        if Word in dictionaryResponseData:
+            print(BotNameColon + dictionaryResponseData[Word])
+        else:
+            print(BotNameColon + "Can't find word definition...")
+            continue
 
     if userinp == "dictionary.dump":
         print(dictionaryResponseData)
