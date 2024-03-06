@@ -11,6 +11,7 @@ goodbyes=["Bye!","Goodbye!","See you later!","See you soon!"]
 
 responseData = json.load(open("response.json")) 
 dictionaryResponseData = json.load(open("dictionary.json", "r"))
+chessOpeningDictionaryResponseData = json.load(open("chessOpeningsEco.json", "r"))
 
 print(BotNameColon + random.choice(greetings) + " My name is Cortona!")
 
@@ -30,22 +31,28 @@ while True :
     #Dictionary module
 
     if userinp == "dictionary":
-        Word = input("Put Word here (Undercase only for now):")
+        Word = input(BotNameColon +"Put Word here (Undercase only for now):")
         if Word in dictionaryResponseData:
             print(BotNameColon + dictionaryResponseData[Word])
             continue
         else:
             print(BotNameColon + "Can't find word definition(If you need to add it, go to the end of the .json and add it)")
+            continue
 
     if userinp == "dictionary.dump":
         print(dictionaryResponseData)
         continue
 
-    #Dictionary module extension ends
+    #Chess dictionary module
+    if userinp == "chess":
+        openingName = input(BotNameColon + "Put Word here (Undercase only for now):")
+        if openingName in chessOpeningDictionaryResponseData:
+            print(BotNameColon + chessOpeningDictionaryResponseData[openingName])
+            continue
+        else:
+            print(BotNameColon + "Can't find opening (If you need to add it, go to the end of the .json and add it)")
+            continue
 
-    if userinp in responseData :
-        print(BotNameColon + responseData[userinp])
-        continue
     
 
     if not userinp in responseData:
